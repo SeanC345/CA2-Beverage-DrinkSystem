@@ -1,6 +1,8 @@
 package models;
 
-public class Recipe {
+import java.io.Serializable;
+
+public class Recipe implements Serializable {
     private Ingredient ingredient;
     private double quantity; // Quantity in milliliters
 
@@ -15,5 +17,10 @@ public class Recipe {
 
     public double getQuantity() {
         return quantity;
+    }
+
+    @Override
+    public String toString(){
+        return ingredient.getName() + " (" + quantity + " ml)";
     }
 }

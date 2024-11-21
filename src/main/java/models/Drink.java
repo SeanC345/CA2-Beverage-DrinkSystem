@@ -1,18 +1,23 @@
 package models;
 
 import utils.ABVCalculator;
+import utils.CustomLinkedList;
 
-public class Drink {
+import java.io.Serializable;
+
+public class Drink implements Serializable {
     private String name;
     private String origin;
     private String description;
     private String imageUrl;
+    private CustomLinkedList<Recipe> recipes;
 
     public Drink(String name, String origin, String description, String imageUrl) {
         this.name = name;
         this.origin = origin;
         this.description = description;
         this.imageUrl = imageUrl;
+        this.recipes = new CustomLinkedList<>();
     }
 
     public String getName() {
@@ -27,11 +32,24 @@ public class Drink {
         return description;
     }
 
+    public void addRecipe(Recipe recipe){
+        recipes.add(recipe);
+    }
+
+    public CustomLinkedList<Recipe> getRecipes(){
+        return recipes;
+    }
+
     public String getImageUrl() {
         return imageUrl;
     }
 
     public double calculateABV() {
-        return ABVCalculator.calculateABV(this)
+        return ABVCalculator.calculateABV(this, recipes);
+    }
+
+    @Override
+    public String toString(){
+        return name + " (" + origin + "): " + description;
     }
 }
