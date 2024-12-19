@@ -10,7 +10,7 @@ public class CustomLinkedList<T extends Serializable> implements Serializable {
 
 
 
-    static class Node<T> implements Serializable{
+    private static class Node<T> implements Serializable{
         T data;
         Node<T> next;
 
@@ -34,22 +34,22 @@ public class CustomLinkedList<T extends Serializable> implements Serializable {
     }
 
     public T get(int index) {
-        if (index < 0 || index >= size){
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
         Node<T> current = head;
-        for (int i = 0; i < index; i++){
+        for (int i = 0; i < index; i++) {
             current = current.next;
         }
         return current.data;
     }
-    public void add(T data){
+    public void add(T data) {
         Node<T> newNode = new Node<>(data);
-        if(head == null){
+        if (head == null) {
             head = newNode;
         } else {
             Node<T> current = head;
-            while (current.next != null){
+            while (current.next != null) {
                 current = current.next;
             }
             current.next = newNode;
@@ -75,6 +75,18 @@ public class CustomLinkedList<T extends Serializable> implements Serializable {
             }
             current = current.next;
         }
+    }
+
+    public void set(int index, T data){
+        if ( index < 0 || index >= size ){
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+
+        Node<T> current = head;
+        for(int i =0; i < index; i++){
+            current = current.next;
+        }
+        current.data = data;
     }
 
     public void clear(){
