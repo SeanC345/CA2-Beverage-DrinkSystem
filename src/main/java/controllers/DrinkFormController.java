@@ -2,6 +2,7 @@ package controllers;
 
 import com.example.ca2drinkbeveragesystem.App;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.Drink;
@@ -9,12 +10,19 @@ import models.Drink;
 
 public class DrinkFormController {
     
+    @FXML
     private TextField nameField;
+    @FXML
     private TextField originField;
+    @FXML
     private TextField descriptionField;
+    @FXML
     private TextField imageField;
+    @FXML
     private Button submitButton;
+    @FXML
     private Button backButton;
+    @FXML
     private Button homeButton;
 
     public void initialize() {
