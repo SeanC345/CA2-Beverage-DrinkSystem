@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DrinksListViewController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DrinkFormController">
    <children>
       <ImageView fitHeight="800.0" fitWidth="1000.0" pickOnBounds="true">
          <viewport>
@@ -63,9 +63,9 @@
                      </font>
                   </Label>
                   <TextField fx:id="nameField" prefHeight="26.0" prefWidth="473.0" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="Field" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="startDateField" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="endDateField" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="originField" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="descriptionField" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="imageField" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
                <VBox.margin>
                   <Insets top="385.0" />
@@ -76,17 +76,7 @@
             </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button fx:id="recipeButton" layoutX="380.0" layoutY="48.0" mnemonicParsing="false" onAction="#viewRecipe" style="-fx-background-radius: 15;" text="Recipe">
-                     <font>
-                        <Font name="DejaVu Sans Mono Bold" size="13.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="updateButton" layoutX="415.0" layoutY="48.0" mnemonicParsing="false" onAction="#updateDrink" style="-fx-background-radius: 15;" text="Update">
-                     <font>
-                        <Font name="DejaVu Sans Mono Bold" size="13.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="deleteButton" layoutX="450.0" layoutY="48.0" mnemonicParsing="false" onAction="#deleteDrink" style="-fx-background-radius: 15;" text="Delete">
+                  <Button fx:id="submitButton" layoutX="450.0" layoutY="48.0" mnemonicParsing="false" onAction="#submit" style="-fx-background-radius: 15;" text="Delete">
                      <font>
                         <Font name="DejaVu Sans Mono Bold" size="13.0" />
                      </font>
