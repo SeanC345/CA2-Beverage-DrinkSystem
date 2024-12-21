@@ -1,8 +1,9 @@
 package utils;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
-public class CustomLinkedList<T extends Serializable> implements Serializable {
+public class CustomLinkedList<T extends Serializable> implements Iterable<T>, Serializable {
     private Node<T> head;
     private int size;
 
@@ -92,6 +93,27 @@ public class CustomLinkedList<T extends Serializable> implements Serializable {
     public void clear(){
         head = null;
         size = 0;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new CustomLinkedListIterator();
+    }
+
+    private class CustomLinkedListIterator implements Iterator<T> {
+        private Node<T> current = head;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public T next() {
+            T data = current.data;
+            current = current.next;
+            return data;
+        }
     }
 
 }

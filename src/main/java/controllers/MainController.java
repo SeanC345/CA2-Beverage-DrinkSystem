@@ -36,12 +36,12 @@ public class MainController {
 
     @FXML
     public void switchToDrinksView() {
-        App.switchScene("DrinksView");
+        App.switchScene("/views/DrinkMenuView");
     }
 
     @FXML
     public void switchToIngredientsView() {
-        App.switchScene("IngredientsView");
+        App.switchScene("/views/IngredientsView");
     }
 
 

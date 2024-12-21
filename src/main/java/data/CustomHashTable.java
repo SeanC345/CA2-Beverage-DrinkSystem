@@ -1,20 +1,27 @@
 package data;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 import utils.CustomLinkedList;
 
-import java.io.Serializable;
-
-public class CustomHashTable<K, V> implements Serializable {
+public class CustomHashTable<K, V> implements Iterable<CustomHashTable.Node<K, V>>, Serializable {
     private static final long serialVersionUID = 1L;
 
     // Node to hold key-value pairs
-    private static class Node<K, V> implements Serializable {
+    public static class Node<K, V> implements Serializable {
         K key;
         V value;
 
         public Node(K key, V value) {
             this.key = key;
             this.value = value;
+        }
+
+        public K getKey() {
+            return key;
         }
     }
 
@@ -34,7 +41,15 @@ public class CustomHashTable<K, V> implements Serializable {
     private void initializeBuckets() {
         for (int i = 0; i < capacity; i++) {
             table.add(null);
+            table.clear();
         }
+    }
+
+    // Reset the hash table
+    public void reset() {
+        table.clear();
+        size = 0;
+        initializeBuckets();
     }
 
     // Primary hash function to calculate the bucket index
@@ -113,5 +128,46 @@ public class CustomHashTable<K, V> implements Serializable {
     // Check if the hash table is empty
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    //Get a set of all keys in hash tbale
+    public Set<K> keySet() {
+    Set<K> keys = new HashSet<>();
+    for (Node<K, V> node : table) { // Iterate through the hash table
+        keys.add(node.getKey());
+    }
+    return keys;
+    }
+
+    //Get a set of all values in hashTable
+    public Set<V> valueSet() {
+        Set<V> values = new HashSet<>();
+        for (Node<K, V> node : table) { // Iterate through the hash table
+            values.add(node.value);
+        }
+        return values;
+    }
+
+    //Iterator for looping through the hash table
+    @Override
+    public Iterator<Node<K, V>> iterator() {
+        return new CustomHashTableIterator();
+    }
+
+    private class CustomHashTableIterator implements Iterator<Node<K, V>> {
+        private int currentIndex = 0;
+
+        @Override
+        public boolean hasNext() {
+            while (currentIndex < table.size() && table.get(currentIndex) == null) {
+                currentIndex++;
+            }
+            return currentIndex < table.size();
+        }
+
+        @Override
+        public Node<K, V> next() {
+            return table.get(currentIndex++);
+        }
     }
 }

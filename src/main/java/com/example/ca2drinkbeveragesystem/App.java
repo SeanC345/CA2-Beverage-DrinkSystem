@@ -18,6 +18,7 @@ public class App extends Application implements Serializable {
     private static Scene scene;
     public static CustomHashTable<String, Drink> drinksTable = new CustomHashTable<>(50);
     public static CustomHashTable<String, Ingredient> ingredientsTable = new CustomHashTable<>(50);
+    public static Drink selectedDrink;
 
 
     public static void main(String[] args) {
@@ -27,7 +28,7 @@ public class App extends Application implements Serializable {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/views/MainView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 800);
+        scene = new Scene(fxmlLoader.load(), 1000, 800);
         stage.setResizable(false);
         stage.setTitle("Beverage System");
         stage.setScene(scene);
@@ -39,6 +40,7 @@ public class App extends Application implements Serializable {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
+        System.out.println("Loading FXML: " + fxml);
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
@@ -49,6 +51,10 @@ public class App extends Application implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void setSelectedDrink(Drink drink) {
+        selectedDrink = drink;
     }
 
 }
