@@ -58,7 +58,7 @@
             </HBox>
          </children>
       </VBox>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Drink">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Drink Menu">
          <StackPane.margin>
             <Insets bottom="700.0" />
          </StackPane.margin>

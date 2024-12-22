@@ -16,8 +16,8 @@ import models.Ingredient;
 public class App extends Application implements Serializable {
 
     private static Scene scene;
-    public static CustomHashTable<String, Drink> drinksTable = new CustomHashTable<>(50);
-    public static CustomHashTable<String, Ingredient> ingredientsTable = new CustomHashTable<>(50);
+    public static CustomHashTable<String, Drink> drinksTable = new CustomHashTable<>(10000);
+    public static CustomHashTable<String, Ingredient> ingredientsTable = new CustomHashTable<>(10000);
     public static Drink selectedDrink;
 
 

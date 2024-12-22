@@ -44,6 +44,7 @@ public class CustomLinkedList<T extends Serializable> implements Iterable<T>, Se
         }
         return current.data;
     }
+    
     public void add(T data) {
         Node<T> newNode = new Node<>(data);
         if (head == null) {

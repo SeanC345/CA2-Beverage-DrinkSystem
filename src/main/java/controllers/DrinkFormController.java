@@ -45,7 +45,7 @@ public class DrinkFormController {
     }
 
     public void back() {
-        App.switchScene("/views/DrinkMenu");
+        App.switchScene("views/DrinkMenu");
     }
 
     public void home() {

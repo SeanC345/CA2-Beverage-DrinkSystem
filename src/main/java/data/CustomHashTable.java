@@ -39,9 +39,9 @@ public class CustomHashTable<K, V> implements Iterable<CustomHashTable.Node<K, V
 
     // Initialize the buckets
     private void initializeBuckets() {
+        table.clear();
         for (int i = 0; i < capacity; i++) {
             table.add(null);
-            table.clear();
         }
     }
 
