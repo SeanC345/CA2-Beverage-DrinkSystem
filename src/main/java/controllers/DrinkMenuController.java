@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 public class DrinkMenuController {
-
     @FXML
     private Button addDrinkButton;
     @FXML
@@ -18,12 +17,11 @@ public class DrinkMenuController {
 
     @FXML
     public void initialize() {
-        // Code to initialize the controller
+        buttonEvents();
     }
-    
+
     @FXML
     public void addDrink() {
-        App.selectedDrink = null;
         App.switchScene("/views/DrinkForm");
     }
 
@@ -34,7 +32,7 @@ public class DrinkMenuController {
 
     @FXML
     public void searchDrink() {
-        App.switchScene("/views/SearchDrink");
+        App.switchScene("/views/SearchResults");
     }
 
     @FXML
@@ -42,11 +40,8 @@ public class DrinkMenuController {
         App.switchScene("/views/MainView");
     }
 
-    @FXML
     public void buttonEvents() {
         addDrinkButton.setOnAction(e -> addDrink());
-        // deleteDrinkButton.setOnAction(e -> deleteDrink());
-        // updateDrinkButton.setOnAction(e -> updateDrink());
         viewDrinksButton.setOnAction(e -> viewDrinks());
         searchDrinkButton.setOnAction(e -> searchDrink());
         homeButton.setOnAction(e -> home());
