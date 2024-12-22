@@ -40,8 +40,7 @@ public class CustomHashTable<K, V> implements Iterable<CustomHashTable.Node<K, V
     // Initialize the buckets
     private void initializeBuckets() {
         for (int i = 0; i < capacity; i++) {
-            table.add(null);
-            table.clear();
+            table.add(null); // Add `capacity` null nodes
         }
     }
 
@@ -69,23 +68,39 @@ public class CustomHashTable<K, V> implements Iterable<CustomHashTable.Node<K, V
 
         int index = primaryIndex;
         int attempts = 0;
+
         while (attempts < capacity) {
+            if (index < 0 || index >= table.size()) {
+                throw new IndexOutOfBoundsException("Bucket index out of bounds: " + index);
+            }
+
             Node<K, V> node = table.get(index);
+
             if (node == null || node.key.equals(key)) {
                 return index;
             }
+
             index = (index + stepSize) % capacity;
             attempts++;
         }
+
         return -1; // Table is full
     }
 
     // Add a key-value pair
     public void put(K key, V value) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
         int index = findBucketIndex(key);
 
         if (index == -1) {
             throw new IllegalStateException("Hash table is full");
+        }
+
+        if (index >= table.size()) {
+            throw new IndexOutOfBoundsException("Invalid index for put: " + index);
         }
 
         Node<K, V> node = table.get(index);
@@ -93,7 +108,7 @@ public class CustomHashTable<K, V> implements Iterable<CustomHashTable.Node<K, V
             table.set(index, new Node<>(key, value));
             size++;
         } else {
-            node.value = value; // Update value if key exists
+            node.value = value; // Update existing value
         }
     }
 
@@ -143,7 +158,9 @@ public class CustomHashTable<K, V> implements Iterable<CustomHashTable.Node<K, V
     public Set<V> valueSet() {
         Set<V> values = new HashSet<>();
         for (Node<K, V> node : table) { // Iterate through the hash table
-            values.add(node.value);
+            if (node != null) { // Skip null nodes
+                values.add(node.value);
+            }
         }
         return values;
     }
