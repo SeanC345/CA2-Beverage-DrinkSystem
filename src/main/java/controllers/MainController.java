@@ -14,24 +14,8 @@ public class MainController {
     private Button exitButton;
 
     @FXML
-    public void exit() {
-        System.exit(0);
-        save();
-    }
-
-    @FXML
-    public void save() {
-        // Code to save data
-    }
-
-    @FXML
-    public void load() {
-        // Code to load data
-    }
-
-    @FXML
     public void initialize() {
-        load();
+        buttonEvents();
     }
 
     @FXML
@@ -44,8 +28,17 @@ public class MainController {
         App.switchScene("/views/IngredientsView");
     }
 
-
     @FXML
+    public void exit() {
+        saveData();
+        System.exit(0);
+    }
+
+    private void saveData() {
+        data.DataPersistence.saveData(App.drinksTable, "drinksData.dat");
+        data.DataPersistence.saveData(App.ingredientsTable, "ingredientsData.dat");
+    }
+
     public void buttonEvents() {
         viewDrinksButton.setOnAction(e -> switchToDrinksView());
         viewIngredientsButton.setOnAction(e -> switchToIngredientsView());

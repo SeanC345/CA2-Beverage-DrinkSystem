@@ -65,7 +65,8 @@
                   <TextField fx:id="nameField" prefHeight="26.0" prefWidth="473.0" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="originField" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="descriptionField" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="imageField" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Button fx:id="uploadImageButton" text="Upload Image" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
                <VBox.margin>
                   <Insets top="385.0" />
