@@ -36,7 +36,7 @@ public class CustomLinkedList<T extends Serializable> implements Iterable<T>, Se
 
     public T get(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index out of bounds");
+            throw new IndexOutOfBoundsException("Index out of bounds: " + index + ", List size: " + size);
         }
         Node<T> current = head;
         for (int i = 0; i < index; i++) {
@@ -44,6 +44,7 @@ public class CustomLinkedList<T extends Serializable> implements Iterable<T>, Se
         }
         return current.data;
     }
+
     public void add(T data) {
         Node<T> newNode = new Node<>(data);
         if (head == null) {
