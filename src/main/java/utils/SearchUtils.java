@@ -45,4 +45,14 @@ public class SearchUtils {
         
         return results;
     }
+
+    public static CustomLinkedList<Drink> searchDrinksByName(CustomLinkedList<Drink> drinks, String keyword) {
+        CustomLinkedList<Drink> result = new CustomLinkedList<>();
+        for (Drink drink : drinks) {
+            if (drink.getName().toLowerCase().contains(keyword.toLowerCase())) {
+                result.add(drink);
+            }
+        }
+        return result;
+    }
 }
