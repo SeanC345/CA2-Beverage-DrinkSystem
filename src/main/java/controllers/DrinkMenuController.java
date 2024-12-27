@@ -32,7 +32,7 @@ public class DrinkMenuController {
 
     @FXML
     public void searchDrink() {
-        App.switchScene("/views/SearchResults");
+        App.switchScene("/views/DrinkSearchView");
     }
 
     @FXML

@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import models.Drink;
 import models.Ingredient;
+import utils.CustomLinkedList;
 
 
 public class App extends Application implements Serializable {
@@ -19,6 +20,7 @@ public class App extends Application implements Serializable {
     public static CustomHashTable<String, Drink> drinksTable = new CustomHashTable<>(10000);
     public static CustomHashTable<String, Ingredient> ingredientsTable = new CustomHashTable<>(10000);
     public static Drink selectedDrink;
+    public static CustomLinkedList<Drink> drinkResults;
 
 
     public static void main(String[] args) {
@@ -57,4 +59,7 @@ public class App extends Application implements Serializable {
         selectedDrink = drink;
     }
 
+    public static void setDrinkResults(CustomLinkedList<Drink> results) {
+        drinkResults = results;
+    }
 }

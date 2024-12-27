@@ -23,6 +23,10 @@ public class CustomHashTable<K, V> implements Iterable<CustomHashTable.Node<K, V
         public K getKey() {
             return key;
         }
+
+        public V getValue() {
+            return value;
+        }
     }
 
     private CustomLinkedList<Node<K, V>> table;
@@ -39,13 +43,8 @@ public class CustomHashTable<K, V> implements Iterable<CustomHashTable.Node<K, V
 
     // Initialize the buckets
     private void initializeBuckets() {
-        table.clear();
         for (int i = 0; i < capacity; i++) {
-<<<<<<< HEAD
-            table.add(null);
-=======
             table.add(null); // Add `capacity` null nodes
->>>>>>> ea7a0f975e0f06049f795a5e5e67c54e88e570ab
         }
     }
 

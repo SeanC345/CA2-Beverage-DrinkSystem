@@ -1,5 +1,7 @@
 package controllers;
 
+import java.io.File;
+
 import com.example.ca2drinkbeveragesystem.App;
 
 import javafx.fxml.FXML;
@@ -9,8 +11,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import models.Drink;
-
-import java.io.File;
 
 public class DrinkFormController {
     @FXML
@@ -82,11 +82,7 @@ public class DrinkFormController {
 
     @FXML
     public void back() {
-<<<<<<< HEAD
-        App.switchScene("views/DrinkMenu");
-=======
         App.switchScene("/views/DrinkMenuView");
->>>>>>> ea7a0f975e0f06049f795a5e5e67c54e88e570ab
     }
 
     @FXML
