@@ -21,7 +21,7 @@ public class Ingredient implements Serializable {
         return description;
     }
 
-    public double getABV() {
+    public double getAbv() {
         return abv;
     }
 }

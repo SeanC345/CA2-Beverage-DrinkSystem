@@ -25,7 +25,7 @@ public class MainController {
 
     @FXML
     public void switchToIngredientsView() {
-        App.switchScene("/views/IngredientsView");
+        App.switchScene("/views/IngredientMenuView");
     }
 
     @FXML

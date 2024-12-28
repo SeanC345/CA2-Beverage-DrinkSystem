@@ -39,27 +39,46 @@ public class DrinkSearchController {
 
     @FXML
     public void search() {
-        String name = nameField != null ? nameField.getText() : "";
-        String ABV = ABVField != null ? ABVField.getText() : "";
-        if (name.isEmpty() && ABV.isEmpty()) {
+        String name = nameField != null ? nameField.getText().trim() : "";
+        String abvText = ABVField != null ? ABVField.getText().trim() : "";
+
+        // Check if both fields are empty
+        if (name.isEmpty() && abvText.isEmpty()) {
             System.out.println("Please enter a name or ABV to search for a drink.");
-        } 
-        else {
-            if(ABV.isEmpty()) {
-                System.out.println("Searching for drink with name: " + name);
-                App.setDrinkResults(SearchUtils.searchByName(App.drinksTable, name));
-            }
-            else if(name.isEmpty()) {
-                System.out.println("Searching for drink with ABV: " + ABV);
-                App.setDrinkResults(SearchUtils.searchByABV(App.drinksTable, Double.parseDouble(ABV)));
-            }
-            else {
-                System.out.println("Searching for drink with name: " + name + " and ABV: " + ABV);
-                App.setDrinkResults(SearchUtils.searchByNameAndABV(App.drinksTable, name, Double.parseDouble(ABV)));
-            }
-            App.switchScene("/views/DrinkSearchResults");
+            return;
         }
+
+        // Parse ABV input if provided
+        double abv = -1; // Use -1 to indicate no ABV filter
+        if (!abvText.isEmpty()) {
+            try {
+                abv = Double.parseDouble(abvText);
+                if (abv < 0 || abv > 100) {
+                    System.out.println("ABV must be between 0 and 100.");
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid ABV value! Please enter a valid number.");
+                return;
+            }
+        }
+
+        // Perform the search
+        if (abv == -1) { // No ABV filter
+            System.out.println("Searching for drink with name: " + name);
+            App.setDrinkResults(SearchUtils.searchDrinksByName(App.drinksTable, name));
+        } else if (name.isEmpty()) { // Only ABV filter
+            System.out.println("Searching for drink with ABV: " + abv);
+            App.setDrinkResults(SearchUtils.searchDrinksByABV(App.drinksTable, abv));
+        } else { // Both name and ABV filter
+            System.out.println("Searching for drink with name: " + name + " and ABV: " + abv);
+            App.setDrinkResults(SearchUtils.searchDrinksByNameAndABV(App.drinksTable, name, abv));
+        }
+
+        // Navigate to the search results view
+        App.switchScene("/views/DrinkSearchResults");
     }
+
 
     private void buttonEvents() {
         backButton.setOnAction(e -> back());

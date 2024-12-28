@@ -14,7 +14,7 @@ public class ABVCalculator {
             Ingredient ingredient = ingredients.get(i); // Get the recipe at index i
             double quantity = recipe.getQuantity();
             // Add to the total alcohol content if ABV > 0
-            totalAlcoholContent += ingredient.getABV() * quantity;
+            totalAlcoholContent += ingredient.getAbv() * quantity;
             //Add to the total volume
             totalVolume += quantity;
         }

@@ -13,15 +13,15 @@ import models.Drink;
 import models.Ingredient;
 import utils.CustomLinkedList;
 
-
 public class App extends Application implements Serializable {
 
     private static Scene scene;
     public static CustomHashTable<String, Drink> drinksTable = new CustomHashTable<>(10000);
     public static CustomHashTable<String, Ingredient> ingredientsTable = new CustomHashTable<>(10000);
     public static Drink selectedDrink;
+    public static Ingredient selectedIngredient; // Added for ingredient navigation
     public static CustomLinkedList<Drink> drinkResults;
-
+    public static CustomLinkedList<Ingredient> ingredientResults;
 
     public static void main(String[] args) {
         launch();
@@ -61,5 +61,18 @@ public class App extends Application implements Serializable {
 
     public static void setDrinkResults(CustomLinkedList<Drink> results) {
         drinkResults = results;
+    }
+
+    // Added methods for ingredient navigation
+    public static void setSelectedIngredient(Ingredient ingredient) {
+        selectedIngredient = ingredient;
+    }
+
+    public static Ingredient getSelectedIngredient() {
+        return selectedIngredient;
+    }
+
+    public static void setSelectedIngredientResults(CustomLinkedList<Ingredient> results) {
+        ingredientResults = results;
     }
 }

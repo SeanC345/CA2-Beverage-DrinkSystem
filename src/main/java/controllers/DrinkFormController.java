@@ -44,6 +44,8 @@ public class DrinkFormController {
     private CustomLinkedList<Ingredient> chosenIngredients;
 
     public void initialize() {
+        loadIngredients();
+        chosenIngredients = new CustomLinkedList<>();
         buttonEvents();
     }
 
