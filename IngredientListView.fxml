@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.IngredientListViewController">
+    <children>
+        <!-- Background Image -->
+        <ImageView fitHeight="800.0" fitWidth="1000.0" pickOnBounds="true">
+            <viewport>
+                <Rectangle2D />
+            </viewport>
+            <image>
+                <Image url="https://t4.ftcdn.net/jpg/08/65/34/87/360_F_865348755_RdAEddVyxYG4XNxP4OMjCDZd5njxb8Hu.jpg" />
+            </image>
+        </ImageView>
+
+        <!-- Main Layout -->
+        <VBox alignment="CENTER" spacing="20.0">
+            <children>
+                <!-- Title -->
+                <Text text="Ingredients List" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font>
+                        <Font name="DejaVu Sans Mono Bold" size="36.0" />
+                    </font>
+                </Text>
+
+                <!-- TableView -->
+                <TableView fx:id="ingredientTable" prefHeight="400.0" prefWidth="800.0">
+                    <columns>
+                        <TableColumn fx:id="nameColumn" text="Name" prefWidth="200.0" />
+                        <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="400.0" />
+                        <TableColumn fx:id="abvColumn" text="ABV (%)" prefWidth="200.0" />
+                    </columns>
+                </TableView>
+
+                <!-- Buttons -->
+                <VBox spacing="10.0">
+                    <Button text="Delete Selected" onAction="#deleteIngredient" />
+                    <Button text="Back" onAction="#back" />
+                    <Button text="Home" onAction="#home" />
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</StackPane>
