@@ -6,11 +6,15 @@ import com.example.ca2drinkbeveragesystem.App;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import models.Drink;
+import models.Ingredient;
+import models.Recipe;
+import utils.CustomLinkedList;
 
 public class DrinkFormController {
     @FXML
@@ -29,15 +33,40 @@ public class DrinkFormController {
     private Button backButton;
     @FXML
     private Button homeButton;
+    @FXML
+    private ComboBox<String> ingredientBox;
+    @FXML
+    private Button addIngredientButton;
+    @FXML
+    private TextField quantityField;
 
     private String imagePath; // To store the path of the selected image
+    private CustomLinkedList<Ingredient> chosenIngredients;
 
     public void initialize() {
         buttonEvents();
     }
 
-    public void addDrink(String name, String origin, String description, String image) {
-        Drink drink = new Drink(name, origin, description, image);
+
+    public void loadIngredients() {
+        for (Ingredient ingredient : App.ingredientsTable.valueSet()) {
+            ingredientBox.getItems().add(ingredient.getName());
+        }
+    }
+
+    public Ingredient getSelectedIngredient() {
+        String name = ingredientBox.getValue();
+        return App.ingredientsTable.get(name);
+    }
+
+    public void addIngredient() {
+        Ingredient ingredient = getSelectedIngredient();
+        chosenIngredients.add(ingredient);
+        System.out.println("Ingredient added: " + ingredient.getName());
+    }
+
+    public void addDrink(String name, String origin, String description, String image, Recipe recipe) {
+        Drink drink = new Drink(name, origin, description, image, recipe);
         App.drinksTable.put(name, drink);
     }
 
@@ -47,8 +76,11 @@ public class DrinkFormController {
         String origin = originField.getText();
         String description = descriptionField.getText();
 
+        double quantity = Double.parseDouble(quantityField.getText());
+        Recipe recipe = new Recipe(chosenIngredients, quantity);
+
         if (validateFields(name, origin, description, imagePath)) {
-            addDrink(name, origin, description, imagePath);
+            addDrink(name, origin, description, imagePath, recipe);
             System.out.println("Drink added: " + name);
             back();
         }
@@ -91,6 +123,7 @@ public class DrinkFormController {
     }
 
     private void buttonEvents() {
+        addIngredientButton.setOnAction(e -> addIngredient());
         uploadImageButton.setOnAction(e -> uploadImage());
         submitButton.setOnAction(e -> submit());
         backButton.setOnAction(e -> back());

@@ -2,17 +2,23 @@ package models;
 
 import java.io.Serializable;
 
+import utils.CustomLinkedList;
+
 public class Recipe implements Serializable {
-    private Ingredient ingredient;
+    private CustomLinkedList<Ingredient> ingredients;
     private double quantity; // Quantity in milliliters
 
-    public Recipe(Ingredient ingredient, double quantity) {
-        this.ingredient = ingredient;
+    public Recipe(CustomLinkedList<Ingredient> ingredients, double quantity) {
+        this.ingredients = ingredients;
         this.quantity = quantity;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
+    public void addIngredient(Ingredient ingredient){
+        ingredients.add(ingredient);
+    }
+
+    public CustomLinkedList<Ingredient> getIngredients(){
+        return ingredients;
     }
 
     public double getQuantity() {
@@ -21,6 +27,6 @@ public class Recipe implements Serializable {
 
     @Override
     public String toString(){
-        return ingredient.getName() + " (" + quantity + " ml)";
+        return ingredients.toString() + " (" + quantity + " ml)";
     }
 }

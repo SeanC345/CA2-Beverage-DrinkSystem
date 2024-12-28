@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.Ingredient;
 
-public class IngredientController {
+public class IngredientFormController {
     @FXML
     private TextField nameField;
     @FXML
@@ -67,5 +67,5 @@ public class IngredientController {
     public void buttonEvents() {
         submitButton.setOnAction(e -> submit());
         backButton.setOnAction(e -> back());
-    }
+    }   
 }

@@ -24,7 +24,7 @@ public class SortUtils {
 
     // helper method
     private static int compareByRecipe(Drink d1, Drink d2) {
-        return d1.getRecipes().size() - d2.getRecipes().size();
+        return d1.getRecipe().getIngredients().size() - d2.getRecipe().getIngredients().size();
     }
 
     // Shell Sort implementation for sorting by name
