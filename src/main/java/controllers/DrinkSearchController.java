@@ -28,13 +28,13 @@ public class DrinkSearchController {
     @FXML
     public void back() {
         System.out.println("Going back to the previous screen.");
-        App.switchScene("DrinkMenuView");
+        App.switchScene("/views/DrinkMenuView");
     }
 
     @FXML
     public void home() {
         System.out.println("Going back to the home screen.");
-        App.switchScene("MainView");
+        App.switchScene("/views/MainView");
     }
 
     @FXML

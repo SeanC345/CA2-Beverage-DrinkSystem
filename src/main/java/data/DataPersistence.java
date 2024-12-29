@@ -7,8 +7,9 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 
-public class DataPersistence {
+public class DataPersistence implements Serializable {
     
     // Save hash table to file
     public static <K, V> void saveData(CustomHashTable<K, V> hashTable, String filename) {
@@ -43,6 +44,4 @@ public class DataPersistence {
         e.printStackTrace();
     }
 }
-
-    
 }

@@ -117,4 +117,16 @@ public class CustomLinkedList<T extends Serializable> implements Iterable<T>, Se
         }
     }
 
+    @Override
+    public String toString() {
+        String result = "";
+        Node<T> current = head;
+        while (current != null) {
+            result += current.data + " -> ";
+            current = current.next;
+        }
+        result += "null";
+        return result;
+    }
+
 }

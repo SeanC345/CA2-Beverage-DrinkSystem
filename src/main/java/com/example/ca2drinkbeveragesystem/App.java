@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import data.CustomHashTable;
+import data.DataPersistence;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -74,5 +75,10 @@ public class App extends Application implements Serializable {
 
     public static void setSelectedIngredientResults(CustomLinkedList<Ingredient> results) {
         ingredientResults = results;
+    }
+
+    public void load() {
+        DataPersistence.loadData(drinksTable, "drinksData.dat");
+        DataPersistence.loadData(ingredientsTable, "ingredientsData.dat");
     }
 }
