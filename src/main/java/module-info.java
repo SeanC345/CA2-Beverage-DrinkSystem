@@ -7,6 +7,7 @@ module com.example.ca2drinkbeveragesystem {
     exports models;
     exports data;
     exports utils;
+    exports controllers;
 
     // Open packages for reflection used by JavaFX
     opens controllers to javafx.fxml;

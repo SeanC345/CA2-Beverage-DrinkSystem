@@ -21,6 +21,8 @@ public class RecipeViewController {
     @FXML
     private Label drinkNameLabel; // Label to display the name of the selected drink
     @FXML
+    private Label quantityLabel; // Label to display the quantity of the selected drink
+    @FXML
     private TableView<Ingredient> recipeTable; // Table to display the list of ingredients
     @FXML
     private TableColumn<Ingredient, String> nameCol; // Column for ingredient names
@@ -64,6 +66,9 @@ public class RecipeViewController {
 
         // Display the name of the selected drink
         drinkNameLabel.setText(App.selectedDrink.getName());
+        // Display the quantity of the selected drink
+        // quantityLabel.setText("Quantity: " + App.selectedDrink.getRecipe().getQuantity() + "ml");
+        quantityLabel.setText("App.selectedDrink.getRecipe().getQuantity()");
 
         // Bind table columns to the ingredient properties
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name")); // Bind name property

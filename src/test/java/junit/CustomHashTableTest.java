@@ -1,6 +1,12 @@
-import data.CustomHashTable;
+package junit;
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import data.CustomHashTable;
 
 public class CustomHashTableTest {
 

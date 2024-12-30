@@ -1,3 +1,4 @@
+package junit;
 import data.CustomHashTable;
 import data.DataPersistence;
 import models.Drink;

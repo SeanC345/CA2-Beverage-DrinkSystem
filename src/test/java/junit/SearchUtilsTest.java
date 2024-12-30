@@ -1,3 +1,4 @@
+package junit;
 import data.CustomHashTable;
 import models.Drink;
 import utils.SearchUtils;

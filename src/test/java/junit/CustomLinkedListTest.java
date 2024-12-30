@@ -1,6 +1,8 @@
-import utils.CustomLinkedList;
+package junit;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import utils.CustomLinkedList;
 
 public class CustomLinkedListTest {
 

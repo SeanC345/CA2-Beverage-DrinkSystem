@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RecipeViewController">
    <children>
@@ -26,6 +25,25 @@
       </ImageView>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
          <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Total quantity: ">
+                     <font>
+                        <Font name="DejaVu Sans Mono Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="quantityLabel" layoutX="418.0" layoutY="50.0">
+                     <font>
+                        <Font name="DejaVu Sans Mono Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="342.0" layoutY="50.0" text=" millilitres">
+                     <font>
+                        <Font name="DejaVu Sans Mono Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <TableView fx:id="recipeTable" prefHeight="400.0" prefWidth="800.0">
               <columns>
                 <TableColumn fx:id="nameCol" prefWidth="250.0" text="Name" />
@@ -54,14 +72,11 @@
       </VBox>
       <HBox alignment="TOP_CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Recipe for " wrappingWidth="238.412109375">
+            <Label layoutX="581.0" layoutY="10.0" text="Recipe for ">
                <font>
                   <Font name="DejaVu Sans Mono Bold" size="36.0" />
                </font>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Text>
+            </Label>
             <Label fx:id="drinkNameLabel" text="RECIPE">
                <font>
                   <Font name="DejaVu Sans Mono Bold" size="36.0" />
