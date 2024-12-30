@@ -34,7 +34,7 @@ public class DataPersistence implements Serializable {
         hashTable.reset();
         
         // Iterate over the keys and reinsert them with their values
-        for (K key : loadedHashTable.keySet()) {
+        for (K key : loadedHashTable.keySet()) {    //THIS MAY BE CAUSING LOAD ERROR
             V value = loadedHashTable.get(key);  
             hashTable.put(key, value);     
         }

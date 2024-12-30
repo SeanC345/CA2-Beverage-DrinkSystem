@@ -3,6 +3,7 @@ package data;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 import utils.CustomLinkedList;
@@ -153,7 +154,9 @@ public class CustomHashTable<K, V> implements Iterable<CustomHashTable.Node<K, V
     public Set<K> keySet() {
     Set<K> keys = new HashSet<>();
     for (Node<K, V> node : table) { // Iterate through the hash table
-        keys.add(node.getKey());
+        if (node != null) { // Skip null nodes
+            keys.add(node.getKey());
+        }
     }
     return keys;
     }
@@ -188,6 +191,9 @@ public class CustomHashTable<K, V> implements Iterable<CustomHashTable.Node<K, V
 
         @Override
         public Node<K, V> next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("No more elements in hash table");
+            }
             return table.get(currentIndex++);
         }
     }

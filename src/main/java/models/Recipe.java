@@ -10,7 +10,7 @@ public class Recipe implements Serializable {
 
     public Recipe(CustomLinkedList<Ingredient> ingredients, double quantity) {
         this.ingredients = ingredients;
-        this.quantity = quantity;
+        this.quantity = quantity; // NEED TO ADD THIS TO THE VIEW
     }
 
     public void addIngredient(Ingredient ingredient){

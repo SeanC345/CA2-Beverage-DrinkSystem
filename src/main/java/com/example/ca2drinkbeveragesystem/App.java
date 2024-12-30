@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import data.CustomHashTable;
-import data.DataPersistence;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,12 +16,15 @@ import utils.CustomLinkedList;
 public class App extends Application implements Serializable {
 
     private static Scene scene;
-    public static CustomHashTable<String, Drink> drinksTable = new CustomHashTable<>(10000);
-    public static CustomHashTable<String, Ingredient> ingredientsTable = new CustomHashTable<>(10000);
+    public static CustomHashTable<String, Drink> drinksTable = new CustomHashTable<>(1000);
+    public static CustomHashTable<String, Ingredient> ingredientsTable = new CustomHashTable<>(1000);
     public static Drink selectedDrink;
     public static Ingredient selectedIngredient; // Added for ingredient navigation
     public static CustomLinkedList<Drink> drinkResults;
     public static CustomLinkedList<Ingredient> ingredientResults;
+
+    // public static CustomHashTable<String, Drink> testTable1 = new CustomHashTable<>(10000);
+    // public static CustomHashTable<String, Ingredient> testTable2 = new CustomHashTable<>(10000);
 
     public static void main(String[] args) {
         launch();
@@ -36,6 +38,7 @@ public class App extends Application implements Serializable {
         stage.setTitle("Beverage System");
         stage.setScene(scene);
         stage.show();
+        load();
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -77,8 +80,10 @@ public class App extends Application implements Serializable {
         ingredientResults = results;
     }
 
-    public void load() {
-        DataPersistence.loadData(drinksTable, "drinksData.dat");
-        DataPersistence.loadData(ingredientsTable, "ingredientsData.dat");
+    public static void load() {
+        data.DataPersistence.loadData(drinksTable, "drinksData.dat");
+        data.DataPersistence.loadData(ingredientsTable, "ingredientsData.dat");
+        // data.DataPersistence.loadData(testTable1, "test1.dat");
+        // data.DataPersistence.loadData(testTable2, "test2.dat");
     }
 }
