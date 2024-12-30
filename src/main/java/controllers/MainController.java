@@ -2,8 +2,11 @@ package controllers;
 
 import com.example.ca2drinkbeveragesystem.App;
 
+import data.DataPersistence;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+
+import static com.example.ca2drinkbeveragesystem.App.recipesTable;
 
 public class MainController {
     @FXML
@@ -34,24 +37,25 @@ public class MainController {
         System.exit(0);
     }
 
-    private void saveData() {
-        data.DataPersistence.saveData(App.drinksTable, "drinksData.dat");
-        data.DataPersistence.saveData(App.ingredientsTable, "ingredientsData.dat");
-        
-        // Ingredient ingredient1 = new Ingredient("ingredient1", "ingredient1", 1.0);
-        // Ingredient ingredient2 = new Ingredient("ingredient2", "ingredient2", 2.0);
-        // CustomLinkedList<Ingredient> recipeList = new CustomLinkedList<>();
-        // recipeList.add(ingredient1);
-        // recipeList.add(ingredient2);
-        // Recipe recipe = new Recipe(recipeList, 500);
-        // Drink drink1 = new Drink("drink1", "drink1", "drink1", "drink1", recipe);
+    public void saveData() {
+        try {
+            // Save drinks
+            DataPersistence.saveDrinks(App.drinksTable, "drinksData.dat");
+            System.out.println("Drinks saved successfully.");
 
-        // App.testTable1.put("abc", drink1);
-        // App.testTable2.put("def", ingredient1);
-        // App.testTable2.put("ghi", ingredient2);
-        // data.DataPersistence.saveData(App.testTable1, "test1.dat");
-        // data.DataPersistence.saveData(App.testTable2, "test2.dat");
+            // Save ingredients
+            DataPersistence.saveIngredients(App.ingredientsTable, "ingredientsData.dat");
+            System.out.println("Ingredients saved successfully.");
+
+            // Save recipes
+            DataPersistence.saveRecipes(App.recipesTable, "recipesData.dat");
+            System.out.println("Recipes saved successfully.");
+        } catch (Exception e) {
+            System.err.println("Error saving data: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
+
 
     public void buttonEvents() {
         viewDrinksButton.setOnAction(e -> switchToDrinksView());

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import data.CustomHashTable;
+import data.DataPersistence;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import models.Drink;
 import models.Ingredient;
+import models.Recipe;
 import utils.CustomLinkedList;
 
 public class App extends Application implements Serializable {
@@ -18,13 +20,11 @@ public class App extends Application implements Serializable {
     private static Scene scene;
     public static CustomHashTable<String, Drink> drinksTable = new CustomHashTable<>(1000);
     public static CustomHashTable<String, Ingredient> ingredientsTable = new CustomHashTable<>(1000);
+    public static CustomHashTable<String, Recipe> recipesTable = new CustomHashTable<>(1000); // Added for recipes
     public static Drink selectedDrink;
-    public static Ingredient selectedIngredient; // Added for ingredient navigation
+    public static Ingredient selectedIngredient;
     public static CustomLinkedList<Drink> drinkResults;
     public static CustomLinkedList<Ingredient> ingredientResults;
-
-    // public static CustomHashTable<String, Drink> testTable1 = new CustomHashTable<>(10000);
-    // public static CustomHashTable<String, Ingredient> testTable2 = new CustomHashTable<>(10000);
 
     public static void main(String[] args) {
         launch();
@@ -67,7 +67,6 @@ public class App extends Application implements Serializable {
         drinkResults = results;
     }
 
-    // Added methods for ingredient navigation
     public static void setSelectedIngredient(Ingredient ingredient) {
         selectedIngredient = ingredient;
     }
@@ -81,9 +80,18 @@ public class App extends Application implements Serializable {
     }
 
     public static void load() {
-        data.DataPersistence.loadData(drinksTable, "drinksData.dat");
-        data.DataPersistence.loadData(ingredientsTable, "ingredientsData.dat");
-        // data.DataPersistence.loadData(testTable1, "test1.dat");
-        // data.DataPersistence.loadData(testTable2, "test2.dat");
+        DataPersistence.loadDrinks(drinksTable, "drinksData.dat");
+        DataPersistence.loadIngredients(ingredientsTable, "ingredientsData.dat");
+        DataPersistence.loadRecipes(recipesTable, "recipesData.dat");
+
+        // Restore parentDrink in recipes
+        for (String drinkName : drinksTable.keySet()) {
+            Drink drink = drinksTable.get(drinkName);
+            Recipe recipe = recipesTable.get(drinkName);
+            if (recipe != null) {
+                drink.setRecipe(recipe);
+                recipe.setParentDrink(drink);
+            }
+        }
     }
 }
