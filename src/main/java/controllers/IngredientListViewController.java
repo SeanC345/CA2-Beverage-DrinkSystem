@@ -9,51 +9,57 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Ingredient;
 
+/**
+ * Controller for the Ingredient List view.
+ * Displays a list of all ingredients in a table and allows the user to delete ingredients.
+ */
 public class IngredientListViewController {
 
+    // FXML elements for the table and its columns
     @FXML
-    private TableView<Ingredient> ingredientTable;
+    private TableView<Ingredient> ingredientTable; // Table to display the list of ingredients
     @FXML
-    private TableColumn<Ingredient, String> nameColumn;
+    private TableColumn<Ingredient, String> nameColumn; // Column for ingredient names
     @FXML
-    private TableColumn<Ingredient, String> descriptionColumn;
+    private TableColumn<Ingredient, String> descriptionColumn; // Column for ingredient descriptions
     @FXML
-    private TableColumn<Ingredient, Double> abvColumn;
+    private TableColumn<Ingredient, Double> abvColumn; // Column for ingredient ABV values
 
     /**
-     * Initialize the controller by setting up the table and loading data.
+     * Initializes the controller by setting up table columns and loading data into the table.
      */
     @FXML
     public void initialize() {
-        // Initialize table columns
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        abvColumn.setCellValueFactory(new PropertyValueFactory<>("abv"));
+        // Bind table columns to the properties of the Ingredient class
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name")); // Bind name property
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description")); // Bind description property
+        abvColumn.setCellValueFactory(new PropertyValueFactory<>("abv")); // Bind ABV property
 
-        // Populate the table
+        // Populate the table with ingredients
         loadIngredients();
     }
 
     /**
-     * Loads all ingredients into the table from the ingredients table.
+     * Loads all ingredients from the application's ingredient table into the table view.
      */
     private void loadIngredients() {
+        // Convert the set of ingredients into an observable list and set it to the table
         ObservableList<Ingredient> ingredients = FXCollections.observableArrayList(App.ingredientsTable.valueSet());
-        ingredientTable.setItems(ingredients);
+        ingredientTable.setItems(ingredients); // Update the table with the list of ingredients
     }
 
     /**
-     * Deletes the selected ingredient from the table and updates the view.
+     * Deletes the selected ingredient from the system and updates the table view.
      */
     @FXML
     public void deleteIngredient() {
-        Ingredient selectedIngredient = ingredientTable.getSelectionModel().getSelectedItem();
+        Ingredient selectedIngredient = ingredientTable.getSelectionModel().getSelectedItem(); // Get the selected ingredient
         if (selectedIngredient != null) {
-            App.ingredientsTable.remove(selectedIngredient.getName());
-            loadIngredients();
-            System.out.println("Deleted ingredient: " + selectedIngredient.getName());
+            App.ingredientsTable.remove(selectedIngredient.getName()); // Remove the ingredient from the ingredients table
+            loadIngredients(); // Refresh the table view
+            System.out.println("Deleted ingredient: " + selectedIngredient.getName()); // Log the deletion
         } else {
-            System.out.println("No ingredient selected.");
+            System.out.println("No ingredient selected."); // Log if no ingredient is selected
         }
     }
 
@@ -62,7 +68,7 @@ public class IngredientListViewController {
      */
     @FXML
     public void back() {
-        App.switchScene("/views/IngredientMenuView");
+        App.switchScene("/views/IngredientMenuView"); // Switch to the Ingredient Menu view
     }
 
     /**
@@ -70,7 +76,6 @@ public class IngredientListViewController {
      */
     @FXML
     public void home() {
-        App.switchScene("/views/MainView");
+        App.switchScene("/views/MainView"); // Switch to the Main Menu view
     }
 }
-
