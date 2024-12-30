@@ -27,17 +27,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Total quantity: ">
-                     <font>
-                        <Font name="DejaVu Sans Mono Bold" size="18.0" />
-                     </font>
-                  </Label>
                   <Label fx:id="quantityLabel" layoutX="418.0" layoutY="50.0">
-                     <font>
-                        <Font name="DejaVu Sans Mono Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="342.0" layoutY="50.0" text=" millilitres">
                      <font>
                         <Font name="DejaVu Sans Mono Bold" size="18.0" />
                      </font>

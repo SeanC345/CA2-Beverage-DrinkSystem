@@ -67,9 +67,7 @@ public class RecipeViewController {
         // Display the name of the selected drink
         drinkNameLabel.setText(App.selectedDrink.getName());
         // Display the quantity of the selected drink
-        // quantityLabel.setText("Quantity: " + App.selectedDrink.getRecipe().getQuantity() + "ml");
-        quantityLabel.setText("App.selectedDrink.getRecipe().getQuantity()");
-
+        quantityLabel.setText("Quantity " + App.selectedDrink.getRecipe().getQuantity() + " ml");
         // Bind table columns to the ingredient properties
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name")); // Bind name property
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description")); // Bind description property
